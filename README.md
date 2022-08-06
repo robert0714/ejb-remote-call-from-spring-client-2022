@@ -53,9 +53,10 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
   Copy to ``{jbossHomeName}/standalone/configuration/``
 
 #### Examining the Quickstart
-  ````
+  ```
   java -Dremote.server.host=192.168.18.30   -Dremote.server.port=8080  -Dremote.server.username=quickstartUser   -Dremote.server.password=quickstartPwd1!  -Dclient.mappings.socket.binding=server  -jar ejb-remote-call-from-spring-client-0.0.1-SNAPSHOT.jar
   ```
+  
 **⚠ NOTICE:** The endpoints return data in JSON format. You can use ``curl`` for invocation and ``jq`` command to format the results. For example: ``curl -s http://localhost:8080/client/direct-stateless-http | jq . ``
 
 You can invoke the endpoint ``server/commits`` at  wildfly 26 server (i.e. http://localhost:8180/server/commits ). 
