@@ -65,7 +65,7 @@ You can invoke the endpoint ``server/commits`` at  wildfly 26 server (i.e. http:
 The HTTP invocations return the hostnames of the contacted servers.
 
 # Reference CLI
-* official sample cli : https://github.com/wildfly-extras/wildfly-jar-maven-plugin/tree/7.0.1.Final/examples/scripts
+* official sample about cli : https://github.com/wildfly-extras/wildfly-jar-maven-plugin/tree/7.0.1.Final/examples/scripts
 * sample like add user , socket 
   ```
   -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0  -Dhttp=true
