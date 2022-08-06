@@ -19,7 +19,7 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
-### Serverside (Wildfly 26) Settings  
+### [Serverside (Wildfly 26) Settings](https://github.com/wildfly/quickstart/tree/26.1.1.Final/ejb-txn-remote-call/server)
 
 #### Add the Authorized Application User
 This quickstart uses secured application interfaces and requires that you create the following application user to access the running application.
