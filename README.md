@@ -50,7 +50,8 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
 	 # For OpenShift: this properties file that will be copied by WildFly s2i scripts under $JBOSS_HOME/configuration directory
      quickstartUser=c2d60ae3c894489fa59196c192e351ca
 	```
-  Copy to ``{jbossHomeName}/standalone/configuration/``
+ * If you use the tradtional Wildfly 26 standalone version.  Copy to ``{jbossHomeName}/standalone/configuration/`` .
+ * If you use wildfy bootable jar , refer [the document: Configuring the server during packaging](https://docs.wildfly.org/bootablejar/#wildfly_jar_configuring_build).
 
 #### Examining the Quickstart
   ```
