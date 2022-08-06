@@ -63,3 +63,22 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
 You can invoke the endpoint ``server/commits`` at  wildfly 26 server (i.e. http://localhost:8180/server/commits ). 
 
 The HTTP invocations return the hostnames of the contacted servers.
+
+# Reference CLI
+* official sample cli : https://github.com/wildfly-extras/wildfly-jar-maven-plugin/tree/7.0.1.Final/examples/scripts
+* sample like add user , socket 
+  ```
+  -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0  -Dhttp=true
+  
+  # Create a user store
+  /subsystem=elytron/filesystem-realm=RemotePasswordRealm:add(path=fs-realm-users, relative-to=jboss.server.config.dir)
+
+  # Add user quickstartUser identity and password quickstartPwd1!
+  /subsystem=elytron/filesystem-realm=RemotePasswordRealm:add-identity(identity=quickstartUser)
+  /subsystem=elytron/filesystem-realm=RemotePasswordRealm:set-password(clear={password=quickstartPwd1!},identity=quickstartUser)
+  /subsystem=elytron/filesystem-realm=RemotePasswordRealm:add-identity-attribute(identity=quickstartUser, name=Roles, value=[guest])
+  /subsystem=elytron/simple-role-decoder=from-roles-attribute:add(attribute=Roles)
+
+  /socket-binding-group=standard-sockets/socket-binding=http:list-add(name=client-mappings, value={destination-address="192.168.18.13"})
+  /socket-binding-group=standard-sockets/socket-binding=http:list-add(name=client-mappings, value={destination-address="192.168.50.92"})
+  ```
