@@ -86,7 +86,7 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
     yes/no? yes
     To represent the user add the following to the server-identities definition <secret value="MTIzNDU2" />   
    ```
-    * application-users.properties
+    * application-roles.properties
 	```properties
 	 admin=
 	```
