@@ -51,6 +51,53 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
      quickstartUser=c2d60ae3c894489fa59196c192e351ca
 	```
  * If you use the tradtional Wildfly 26 standalone version.  Copy to ``{jbossHomeName}/standalone/configuration/`` .
+ * If you use the interactive mode:
+   ```shell
+    $ ./add-user.sh
+
+    What type of user do you wish to add?
+    a) Management User (mgmt-users.properties)
+    b) Application User (application-users.properties)
+    (a): b
+
+    Enter the details of the new user to add.
+    Using realm 'ApplicationRealm' as discovered from the existing property files.
+    Username : admin
+    User 'admin' already exists and is disabled, would you like to...
+    a) Update the existing user password and roles
+    b) Enable the existing user
+    c) Type a new username
+    (a):
+    Password recommendations are listed below. To modify these restrictions edit the add-user.properties configuration file.
+    - The password should be different from the username
+    - The password should not be one of the following restricted values {root, admin, administrator}
+    - The password should contain at least 8 characters, 1 alphabetic character(s), 1 digit(s), 1 non-alphanumeric symbol(s)
+    Password :
+    WFLYDM0099: Password should have at least 8 characters!
+    Are you sure you want to use the password entered yes/no? yes
+    Re-enter Password :
+    What groups do you want this user to belong to? (Please enter a comma separated list, or leave blank for none)[  ]:
+    Updated user 'admin' to file '/media/robert0714/DATA/robertData/programs/servers/wildfly/wildfly-26.1.1.Final/standalone/configuration/application-users.properties'
+    Updated user 'admin' to file '/media/robert0714/DATA/robertData/programs/servers/wildfly/wildfly-26.1.1.Final/domain/configuration/application-users.properties'
+    Updated user 'admin' with groups  to file '/media/robert0714/DATA/robertData/programs/servers/wildfly/wildfly-26.1.1.Final/standalone/configuration/application-roles.properties'
+    Updated user 'admin' with groups  to file '/media/robert0714/DATA/robertData/programs/servers/wildfly/wildfly-26.1.1.Final/domain/configuration/application-roles.properties'
+    Is this new user going to be used for one AS process to connect to another AS process?
+    e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server Jakarta Enterprise Beans calls.
+    yes/no? yes
+    To represent the user add the following to the server-identities definition <secret value="MTIzNDU2" />   
+   ```
+    * application-users.properties
+	```properties
+	 admin=
+	```
+	
+    * application-users.properties
+   
+  	```properties
+	 # For OpenShift: this properties file that will be copied by WildFly s2i scripts under $JBOSS_HOME/configuration directory
+         quickstartUser=c2d60ae3c894489fa59196c192e351ca
+         admin=687de38eb91f7a1ca3b637eb7ca9efa7
+	```
  * If you use wildfy bootable jar , refer [the document: Configuring the server during packaging](https://docs.wildfly.org/bootablejar/#wildfly_jar_configuring_build).
 
 #### Examining the Quickstart
