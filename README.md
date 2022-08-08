@@ -100,6 +100,78 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
 	```
  * If you use wildfy bootable jar , refer [the document: Configuring the server during packaging](https://docs.wildfly.org/bootablejar/#wildfly_jar_configuring_build).
 
+#### Wildfly Bootable JAR Settings
+* File structure
+```
+-- server
+    |-- datasource.cli
+    `-- extra-content
+        `-- standalone
+            `-- configuration
+                |-- application-roles.properties
+                `-- application-users.properties
+```
+* pom.xml
+```xml
+            
+<plugin>
+    <groupId>org.wildfly.plugins</groupId>
+    <artifactId>wildfly-jar-maven-plugin</artifactId>
+    <configuration>
+        <feature-packs>
+            <feature-pack>
+                <location>wildfly@maven(org.jboss.universe:community-universe)#${version.server.bom}</location>
+            </feature-pack>
+            <feature-pack>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-datasources-galleon-pack</artifactId>
+                <version>${version.wildfly.datasources.galleon-pack}</version>
+            </feature-pack>
+        </feature-packs>
+        <layers>
+            <layer>h2database-driver</layer>
+            <layer>jpa</layer>
+            <layer>ejb</layer>
+            <layer>logging</layer>
+            <layer>web-server</layer>
+            <!--     <layer>elytron</layer>-->
+        </layers>
+        <excluded-layers>
+            <layer>deployment-scanner</layer>
+        </excluded-layers>
+        <cli-sessions>
+            <cli-session>
+                <script-files>
+                    <script>datasource.cli</script>
+                </script-files>
+		<resolve-expressions>false</resolve-expressions>
+            </cli-session>
+        </cli-sessions>
+        <extra-server-content-dirs>
+            <extra-content>extra-content</extra-content>
+        </extra-server-content-dirs>
+        <plugin-options>
+            <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
+        </plugin-options>
+        <contextRoot>false</contextRoot>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>package</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+datasource.cli
+```cli
+data-source add --jndi-name=java:jboss/datasources/ejbJtaDs --name=ejbJtaDs  \
+ --connection-url=jdbc:h2:mem:ejbJtaDs;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE  \
+ --driver-name=h2database  --user-name=sa  \
+ --password=sa  \
+ --enabled=true 
+```
 #### Examining the Quickstart
   ```
   java -Dremote.server.host=192.168.18.30   -Dremote.server.port=8080  -Dremote.server.username=quickstartUser   -Dremote.server.password=quickstartPwd1!  -Dclient.mappings.socket.binding=server  -jar ejb-remote-call-from-spring-client-0.0.1-SNAPSHOT.jar
