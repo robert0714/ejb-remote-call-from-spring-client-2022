@@ -21,7 +21,7 @@ The following guides illustrate how to use some features concretely:
 
 ### Serverside (Wildfly 26) Settings
 [source codes url](https://github.com/wildfly/quickstart/tree/26.1.1.Final/ejb-txn-remote-call/server)
-#### Add the Authorized Application User
+#### Add the Authorized Application User ,not Management User
 This quickstart uses secured application interfaces and requires that you create the following application user to access the running application.
 
 | UserName        | Realm            | Password          | Roles  |
