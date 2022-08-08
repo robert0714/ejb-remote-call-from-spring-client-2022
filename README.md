@@ -51,7 +51,7 @@ $ {jbossHomeName}/bin/add-user.sh -a -u 'quickstartUser' -p 'quickstartPwd1!'
      quickstartUser=c2d60ae3c894489fa59196c192e351ca
 	```
  * If you use the tradtional Wildfly 26 standalone version.  Copy to ``{jbossHomeName}/standalone/configuration/`` .
- * If you use the interactive mode:
+ * If you use the interactive mode , chooze **Application User**:
    ```shell
     $ ./add-user.sh
 
